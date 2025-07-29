@@ -1,31 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../../../core/constants/design_constants.dart';
-import '../controllers/expression_controller.dart';
 
 class IconActionButton extends StatelessWidget {
-  final ExpressionController expressionController = Get.find();
-  final VoidCallback? onPressed;
+  final Function onPressed;
   final String symbol;
   final Color? color;
-  IconActionButton({
+  const IconActionButton({
     super.key,
     required this.symbol,
     this.color = DesignConstants.kOperatorsTextColor,
-    this.onPressed,
+    required this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () {
-        if (onPressed != null) {
-          onPressed!();
-        } else {
-          expressionController.append(symbol);
-        }
-      },
+      onPressed: () => onPressed.call(symbol),
       child: Text(
         symbol,
         style: TextStyle(
@@ -39,14 +30,19 @@ class IconActionButton extends StatelessWidget {
 }
 
 class NumberActionButton extends StatelessWidget {
-  final ExpressionController expressionController = Get.find();
+  final Function onPressed;
   final String number;
-  NumberActionButton({super.key, required this.number});
+
+  const NumberActionButton({
+    super.key,
+    required this.number,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () => expressionController.append(number),
+      onPressed: () => onPressed.call(number),
       child: Text(
         number,
         style: TextStyle(

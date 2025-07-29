@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 import 'package:math_expressions/math_expressions.dart';
 
-import '../../../../core/constants/app_constants.dart';
+import '../../core/constants/app_constants.dart';
 
-class ExpressionController extends GetxController {
-  var expression = ''.obs;
+class CalculatorController extends GetxController {
+  final expression = RxString('');
 
   void append(String value) {
     if (expression.value == 'Error') {

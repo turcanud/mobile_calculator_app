@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'home_page.dart';
+import 'pages/calculator/calculator_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,13 +10,19 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Calculator App',
-      home: HomePage(),
+      home: Scaffold(
+        body: SafeArea(
+          child: Container(
+            margin: EdgeInsets.symmetric(horizontal: 16.0),
+            child: CalculatorPage(),
+          ),
+        ),
+      ),
     );
   }
 }

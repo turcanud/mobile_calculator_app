@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../../../core/constants/design_constants.dart';
-import '../controllers/expression_controller.dart';
 
 class CalculateButton extends StatelessWidget {
-  final ExpressionController expressionController = Get.find();
-
-  CalculateButton({super.key});
+  final Function onPressed;
+  const CalculateButton({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () =>
-          expressionController.calculate(expressionController.expression.value),
+      onTap: () => onPressed.call(),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.0),
