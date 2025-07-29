@@ -1,7 +1,8 @@
-import 'package:StartApp/core/constants/design_constants.dart';
-import 'package:StartApp/features/calculator/presentation/controllers/expression_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../core/constants/design_constants.dart';
+import '../controllers/expression_controller.dart';
 
 class CommandLine extends StatelessWidget {
   const CommandLine({super.key});

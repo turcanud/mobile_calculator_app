@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:math_expressions/math_expressions.dart';
 
+import '../../../../core/constants/app_constants.dart';
+
 class ExpressionController extends GetxController {
   var expression = ''.obs;
 
@@ -9,13 +11,10 @@ class ExpressionController extends GetxController {
       expression.value = '';
     }
     if (expression.value.isNotEmpty &&
-        (['+', '-', '×', '÷'].contains(value) &&
-            [
-              '+',
-              '-',
-              '×',
-              '÷',
-            ].contains(expression.value[expression.value.length - 1]))) {
+        (AppConstants.kSupportedOperators.contains(value) &&
+            AppConstants.kSupportedOperators.contains(
+              expression.value[expression.value.length - 1],
+            ))) {
       return;
     }
     if (value == '.' && expression.value.isEmpty) {
@@ -63,9 +62,5 @@ class ExpressionController extends GetxController {
     } catch (e) {
       expression.value = 'Error';
     }
-  }
-
-  void setExpression(String value) {
-    expression.value = value;
   }
 }

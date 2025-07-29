@@ -1,9 +1,10 @@
-import 'package:StartApp/core/constants/design_constants.dart';
-import 'package:StartApp/features/calculator/presentation/widgets/custom_action_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../core/constants/design_constants.dart';
 import '../controllers/expression_controller.dart';
+import 'calculate_button.dart';
+import 'custom_action_button.dart';
 
 class ButtonsGrid extends StatelessWidget {
   final ExpressionController expressionController = Get.find();
@@ -23,7 +24,7 @@ class ButtonsGrid extends StatelessWidget {
         //Clear all button
         IconActionButton(
           symbol: "C",
-          color: Color(0xffFF887D),
+          color: DesignConstants.kClearButtonColor,
           onPressed: () => expressionController.clear(),
         ),
         //Empty space for alignment
@@ -37,42 +38,15 @@ class ButtonsGrid extends StatelessWidget {
           ),
         ),
         IconActionButton(symbol: "÷"),
-        NumberActionButton(number: "7"),
-        NumberActionButton(number: "8"),
-        NumberActionButton(number: "9"),
+        ...["7", "8", "9"].map((number) => NumberActionButton(number: number)),
         IconActionButton(symbol: "×"),
-        NumberActionButton(number: "4"),
-        NumberActionButton(number: "5"),
-        NumberActionButton(number: "6"),
+        ...["4", "5", "6"].map((number) => NumberActionButton(number: number)),
         IconActionButton(symbol: "-"),
-        NumberActionButton(number: "1"),
-        NumberActionButton(number: "2"),
-        NumberActionButton(number: "3"),
+        ...["1", "2", "3"].map((number) => NumberActionButton(number: number)),
         IconActionButton(symbol: "+"),
         const SizedBox.shrink(),
-        NumberActionButton(number: "0"),
-        NumberActionButton(number: "."),
-        GestureDetector(
-          onTap: () => expressionController.calculate(
-            expressionController.expression.value,
-          ),
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.0),
-              color: DesignConstants.kOperatorsTextColor,
-            ),
-            child: Center(
-              child: Text(
-                "=",
-                style: TextStyle(
-                  fontSize: 32.0,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
-        ),
+        ...["0", "."].map((number) => NumberActionButton(number: number)),
+        CalculateButton(),
       ],
     );
   }

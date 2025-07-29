@@ -1,3 +1,3 @@
 class AppConstants {
-  static const String baseUrl = '';
+  static const List<String> kSupportedOperators = ['+', '-', '×', '÷'];
 }
