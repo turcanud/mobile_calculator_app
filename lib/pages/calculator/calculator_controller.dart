@@ -5,6 +5,7 @@ import '../../core/constants/app_constants.dart';
 
 class CalculatorController extends GetxController {
   final expression = RxString('');
+  final result = RxString('');
 
   void append(String value) {
     if (expression.value == 'Error') {
@@ -27,6 +28,7 @@ class CalculatorController extends GetxController {
 
   void clear() {
     expression.value = '';
+    result.value = '';
   }
 
   void deleteLast() {
@@ -54,11 +56,9 @@ class CalculatorController extends GetxController {
       var context = ContextModel();
       var evaluator = RealEvaluator(context);
       num eval = evaluator.evaluate(exp);
-      expression.value = eval % 1 == 0
-          ? eval.toInt().toString()
-          : eval.toString();
+      result.value = eval % 1 == 0 ? eval.toInt().toString() : eval.toString();
     } catch (e) {
-      expression.value = 'Error';
+      result.value = 'Error';
     }
   }
 }

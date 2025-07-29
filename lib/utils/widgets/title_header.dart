@@ -8,13 +8,15 @@ class TitleHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 16.0),
-      child: Text(
-        title,
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontWeight: FontWeight.w600,
-          fontSize: 24.0,
-          color: Colors.black,
+      child: Center(
+        child: Text(
+          title,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 24.0,
+            color: Colors.black,
+          ),
         ),
       ),
     );

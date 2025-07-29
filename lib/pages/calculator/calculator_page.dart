@@ -26,9 +26,15 @@ class _CalculatorPageState extends State<CalculatorPage> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         TitleHeader(title: "Calculator"),
-        Obx(() => CommandLine(expression: controller.expression.value)),
+        Obx(
+          () => CommandLine(
+            expression: controller.expression.value,
+            result: controller.result.value,
+          ),
+        ),
         const Divider(color: DesignConstants.kDividerColor),
         ButtonsGrid(
           onAppend: (value) => controller.append(value),
