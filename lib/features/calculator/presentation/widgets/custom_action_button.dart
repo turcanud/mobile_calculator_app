@@ -5,19 +5,26 @@ import 'package:get/get.dart';
 
 class IconActionButton extends StatelessWidget {
   final ExpressionController expressionController = Get.find();
-
+  final VoidCallback? onPressed;
   final String symbol;
   final Color? color;
   IconActionButton({
     super.key,
     required this.symbol,
     this.color = DesignConstants.kOperatorsTextColor,
+    this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () => expressionController.append(symbol),
+      onPressed: () {
+        if (onPressed != null) {
+          onPressed!(); // Call the provided callback
+        } else {
+          expressionController.append(symbol); // Default behavior
+        }
+      },
       child: Text(
         symbol,
         style: TextStyle(

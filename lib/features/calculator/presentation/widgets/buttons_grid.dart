@@ -1,9 +1,13 @@
 import 'package:StartApp/core/constants/design_constants.dart';
 import 'package:StartApp/features/calculator/presentation/widgets/custom_action_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../controllers/expression_controller.dart';
 
 class ButtonsGrid extends StatelessWidget {
-  const ButtonsGrid({super.key});
+  final ExpressionController expressionController = Get.find();
+  ButtonsGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +20,17 @@ class ButtonsGrid extends StatelessWidget {
       ),
       shrinkWrap: true,
       children: <Widget>[
-        IconActionButton(symbol: "C", color: Color(0xffFF887D)),
+        //Clear all button
+        IconActionButton(
+          symbol: "C",
+          color: Color(0xffFF887D),
+          onPressed: () => expressionController.clear(),
+        ),
+        //Empty space for alignment
         const SizedBox.shrink(),
+        //Backspace button
         IconButton(
-          onPressed: () {},
+          onPressed: () => expressionController.deleteLast(),
           icon: Icon(
             Icons.backspace_outlined,
             color: DesignConstants.kOperatorsTextColor,
@@ -42,7 +53,9 @@ class ButtonsGrid extends StatelessWidget {
         NumberActionButton(number: "0"),
         NumberActionButton(number: "."),
         GestureDetector(
-          onTap: () {},
+          onTap: () => expressionController.calculate(
+            expressionController.expression.value,
+          ),
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.0),
