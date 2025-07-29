@@ -30,7 +30,12 @@ class _CalculatorPageState extends State<CalculatorPage> {
         TitleHeader(title: "Calculator"),
         Obx(() => CommandLine(expression: controller.expression.value)),
         const Divider(color: DesignConstants.kDividerColor),
-        ButtonsGrid(expressionController: controller),
+        ButtonsGrid(
+          onAppend: (value) => controller.append(value),
+          onClear: () => controller.clear(),
+          onDeleteLast: () => controller.deleteLast(),
+          onCalculate: () => controller.calculate(controller.expression.value),
+        ),
       ],
     );
   }

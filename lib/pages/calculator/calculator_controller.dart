@@ -26,9 +26,7 @@ class CalculatorController extends GetxController {
   }
 
   void clear() {
-    if (expression.value.isNotEmpty) {
-      expression.value = '';
-    }
+    expression.value = '';
   }
 
   void deleteLast() {
