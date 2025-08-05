@@ -1,4 +1,4 @@
-# Calculator Internship App
+# Mobile Calculator App
 
 How to run?
 
